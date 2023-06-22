@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reduction</title>
+    <link rel="stylesheet" href="https://igoradamenko.github.io/awsm.css/css/awsm.min.css">
+    <style>
+        table,
+        th,
+        td{
+            border-collapse: collapse;
+            border: solid 1px black;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <!--/@@thymesVar id="message" type="java.lag.String"*/-->
+    <h1 th:if="${message !=null}" th:text="${message}"></h1>
+    <!--/*@thymesVar id="weights" type="com.dzikuseko2.reduction_app.Weight"*/-->
+    <fieldset>
+    <dl th:each="weight : ${weights}">
+        <li th:text="|${weight.date} ${weight.bodyWeight} ${weight.description}|"></li>
+    </dl>
+    </fieldset>
+    <br>
+    <table>
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>Waga</th>
+                <th>Opis</th>
+                <th>id</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="weight : ${weights}">
+                <td><span th:text="${weight.date}">Data</span></td>
+                <td><span th:text="${weight.bodyWeight}">Waga</span></td>
+                <td><span th:text="${weight.description}">Opis</span></td>
+                <td><span th:text="${weight.id}">Id</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <fieldset>
+        <legend>Nowy wpis z wagą</legend>
+        <!--/*@thymesVar id="weight" type="com.dzikuseko2.reduction_app.Weight"*/-->
+        <form action="#" method="post" th:action="@{/weights}" th:object="${weight}">
+            <label>Data wpisu
+                <input type="date" th:field="*{date}"/>
+            </label>
+            <br>
+            <label>Waga
+                <input type="number" inputmode="decimal" min=0  step=0.1 th:field="*{bodyWeight}"/>
+            </label>
+            <br>
+            <label>Opis
+                <input type="text" th:field="*{description}"/>
+            </label>
+            <p>
+                <button type="submit">Dodaj</button>
+                <button type="reset">Wyczyść</button>
+            </p>
+        </form>
+    </fieldset>
+</main>
+</body>
+</html>
