@@ -28,10 +28,12 @@ public class WeightController {
         return "weights";
     }
     @PostMapping
-    String addWeight(@ModelAttribute("weight") Weight current, Model model, @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dateWeight){
+    String addWeight(@ModelAttribute("weight") Weight current, Model model/*, @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dateWeight*/){
         weightRepository.save(current);
         model.addAttribute("weight", new Weight());
-        model.addAttribute("message", "Dodano wpis");
+        model.addAttribute("message", "Dodano wpis"); //już się wyswietla po wpisaniu
+        model.addAttribute("weights", getWeights());
+        System.out.println(current.toString());
         return "weights";
     }
 

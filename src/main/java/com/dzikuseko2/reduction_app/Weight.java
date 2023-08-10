@@ -1,7 +1,5 @@
 package com.dzikuseko2.reduction_app;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -15,17 +13,17 @@ public class Weight {
     private LocalDate dateWeight;
 
     @Column(name="body_weight")
-    private float bodyWeight;
+    private int bodyw;
 
     private String description;
 
     public Weight() {
     }
 
-    public Weight(int id, LocalDate dateWeight, float bodyWeight, String description) {
+    public Weight(int id, LocalDate dateWeight, int bodyw, String description) {
         this.id = id;
         this.dateWeight = dateWeight;
-        this.bodyWeight = bodyWeight;
+        this.bodyw = bodyw;
         this.description = description;
     }
 
@@ -33,19 +31,24 @@ public class Weight {
         return id;
     }
 
-    public LocalDate getDate() {
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public LocalDate getDateWeight() {
         return dateWeight;
     }
 
-    public void setDate (LocalDate dateWeight) {
+    public void setDateWeight(LocalDate dateWeight) {
         this.dateWeight = dateWeight;
     }
-    public float getBodyWeight() {
-        return bodyWeight;
+
+    public int getBodyw() {
+        return bodyw;
     }
 
-    public void setWeight(float bodyWeight) {
-        this.bodyWeight = bodyWeight;
+    public void setBodyw(int bodyw) {
+        this.bodyw = bodyw;
     }
 
     public String getDescription() {
@@ -56,9 +59,19 @@ public class Weight {
         this.description = description;
     }
 
+    @Override
+    public String toString() {
+        return "Weight{" +
+                "id=" + id +
+                ", dateWeight=" + dateWeight +
+                ", bodyw=" + bodyw +
+                ", description='" + description + '\'' +
+                '}';
+    }
+
     public void updatedFrom(Weight toUpdate){
         dateWeight = toUpdate.dateWeight;
-        bodyWeight=toUpdate.bodyWeight;
+        bodyw =toUpdate.bodyw;
         description = toUpdate.description;
     }
 }
