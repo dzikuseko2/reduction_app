@@ -29,18 +29,18 @@
     <table>
         <thead>
             <tr>
-                <th>Data</th>
+                <th>Id</th>
                 <th>Waga</th>
                 <th>Opis</th>
-                <th>id</th>
+                <th>Data</th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="weight : ${weights}">
+                <td><span th:text="${weight.id}">Id</span></td>
                 <td><span th:text="${weight.dateWeight}">Data</span></td>
                 <td><span th:text="${weight.bodyw}">Waga</span></td>
                 <td><span th:text="${weight.description}">Opis</span></td>
-                <td><span th:text="${weight.id}">Id</span></td>
             </tr>
         </tbody>
     </table>
@@ -54,7 +54,7 @@
             </label>
             <br>
             <label>Waga
-                <input type="number" th:field="*{bodyw}"/>
+                <input type="number" inputmode="decimal" step="0.1" min="0" th:field="*{bodyw}"/>
             </label>
             <br>
             <label>Opis

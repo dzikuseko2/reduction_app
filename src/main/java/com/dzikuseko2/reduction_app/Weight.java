@@ -13,14 +13,14 @@ public class Weight {
     private LocalDate dateWeight;
 
     @Column(name="body_weight")
-    private int bodyw;
+    private float bodyw;
 
     private String description;
 
     public Weight() {
     }
 
-    public Weight(int id, LocalDate dateWeight, int bodyw, String description) {
+    public Weight(int id, LocalDate dateWeight, float bodyw, String description) {
         this.id = id;
         this.dateWeight = dateWeight;
         this.bodyw = bodyw;
@@ -43,11 +43,11 @@ public class Weight {
         this.dateWeight = dateWeight;
     }
 
-    public int getBodyw() {
+    public float getBodyw() {
         return bodyw;
     }
 
-    public void setBodyw(int bodyw) {
+    public void setBodyw(float bodyw) {
         this.bodyw = bodyw;
     }
 
