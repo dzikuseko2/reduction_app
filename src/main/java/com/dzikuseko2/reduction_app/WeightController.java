@@ -1,7 +1,6 @@
 package com.dzikuseko2.reduction_app;
 
 import org.springframework.data.domain.Pageable;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -9,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -28,15 +26,16 @@ public class WeightController {
         return "weights";
     }
     @PostMapping
-    String addWeight(@ModelAttribute("weight") Weight current, Model model/*, @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dateWeight*/){
+    String addWeight(@ModelAttribute("weight") Weight current, Model model){
         weightRepository.save(current);
         model.addAttribute("weight", new Weight());
-        model.addAttribute("message", "Dodano wpis"); //już się wyswietla po wpisaniu
+        model.addAttribute("last", current.toString());
+        model.addAttribute("message", "Dodano wpis");
         model.addAttribute("weights", getWeights());
         System.out.println(current.toString());
         return "weights";
-    }
 
+    }
 
     @ResponseBody
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -52,7 +51,7 @@ public class WeightController {
     }
     @GetMapping("/{id}")
     ResponseEntity<Weight>readWeightById(@PathVariable int id){
-        return weightRepository.findAllById(id).map(weight -> ResponseEntity.ok(weight)).orElse(ResponseEntity.notFound().build());
+        return weightRepository.findById(id).map(weight -> ResponseEntity.ok(weight)).orElse(ResponseEntity.notFound().build());
     }
 
     @PutMapping("/{id}")

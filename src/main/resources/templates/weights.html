@@ -11,40 +11,18 @@
         td{
             border-collapse: collapse;
             border: solid 1px black;
-            padding: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            margin: 10px;
         }
     </style>
 </head>
 <body>
 <main>
     <!--/@@thymesVar id="message" type="java.lag.String"*/-->
-    <h1 th:if="${message !=null}" th:text="${message}"></h1>
-    <!--/*@thymesVar id="weights" type="com.dzikuseko2.reduction_app.Weight"*/-->
-    <fieldset>
-    <dl th:each="weight : ${weights}">
-        <li th:text="|${weight.dateWeight} ${weight.bodyw} ${weight.description}|"></li>
-    </dl>
-    </fieldset>
-    <br>
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Waga</th>
-                <th>Opis</th>
-                <th>Data</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="weight : ${weights}">
-                <td><span th:text="${weight.id}">Id</span></td>
-                <td><span th:text="${weight.dateWeight}">Data</span></td>
-                <td><span th:text="${weight.bodyw}">Waga</span></td>
-                <td><span th:text="${weight.description}">Opis</span></td>
-            </tr>
-        </tbody>
-    </table>
-
+    <h1 th:if="${message !=null}" th:text="${message}+${last}"></h1>
     <fieldset>
         <legend>Nowy wpis z wagą</legend>
         <!--/*@thymesVar id="weight" type="com.dzikuseko2.reduction_app.Weight"*/-->
@@ -65,6 +43,27 @@
                 <button type="reset">Wyczyść</button>
             </p>
         </form>
+    </fieldset>
+    <!--/*@thymesVar id="weights" type="com.dzikuseko2.reduction_app.Weight"*/-->
+    <fieldset>
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Waga</th>
+                <th>Opis</th>
+                <th>Data</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="weight : ${weights}">
+                <td th:text="${weight.id}">Id></td>
+                <td th:text="${weight.dateWeight}">Data</td>
+                <td th:text="${weight.bodyw}">Waga</td>
+                <td th:text="${weight.description}">Opis</td>
+            </tr>
+            </tbody>
+        </table>
     </fieldset>
 </main>
 </body>

@@ -14,7 +14,7 @@ public interface WeightRepository extends JpaRepository<Weight, Integer> {
     List<Weight> findAll();
     Page<Weight> findAll(Pageable page);
 
-    Optional<Weight> findAllById(Integer id);
+    Optional<Weight> findAById(Integer id);
 
     Weight save(Weight entity);
 

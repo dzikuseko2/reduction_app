@@ -31,10 +31,6 @@ public class Weight {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public LocalDate getDateWeight() {
         return dateWeight;
     }
