@@ -4,25 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reduction</title>
-    <link rel="stylesheet" href="https://igoradamenko.github.io/awsm.css/css/awsm.min.css">
-    <style>
-        table,
-        th,
-        td{
-            border-collapse: collapse;
-            border: solid 1px black;
-            padding-left: 10px;
-            padding-right: 10px;
-            padding-top: 3px;
-            padding-bottom: 3px;
-            margin: 10px;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+
 </head>
 <body>
 <main>
     <!--/@@thymesVar id="message" type="java.lag.String"*/-->
-    <h1 th:if="${message !=null}" th:text="${message}+${last}"></h1>
+    <h1 th:if="${message !=null}" th:text="${message}+${last} + ${weight.id}"></h1>
     <fieldset>
         <legend>Nowy wpis z wagą</legend>
         <!--/*@thymesVar id="weight" type="com.dzikuseko2.reduction_app.Weight"*/-->
@@ -46,21 +34,29 @@
     </fieldset>
     <!--/*@thymesVar id="weights" type="com.dzikuseko2.reduction_app.Weight"*/-->
     <fieldset>
-        <table>
+        <table class="table">
             <thead>
             <tr>
                 <th>Id</th>
+                <th>Data</th>
                 <th>Waga</th>
                 <th>Opis</th>
-                <th>Data</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="weight : ${weights}">
-                <td th:text="${weight.id}">Id></td>
+                <td>
+                    <a th:href="@{'/weights/'+ ${weight.id}}" th:text="${weight.id}"></a>
+                </td>
                 <td th:text="${weight.dateWeight}">Data</td>
                 <td th:text="${weight.bodyw}">Waga</td>
                 <td th:text="${weight.description}">Opis</td>
+                <td>
+                    <form th:action="@{/}" th:object="${weight}" method="post">
+                        <input type="hidden" th:field="${weight.id}"/>
+                        <input type="submit" value="Delete"/>
+                    </form>
+                </td>
             </tr>
             </tbody>
         </table>

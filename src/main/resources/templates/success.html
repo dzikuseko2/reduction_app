@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Added record</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+</head>
+<body>
+<main>
+    <h1 th:text="${message}"></h1>
+    <div th:object="${weight}">
+        <span th:text="${weight.id}">Id></span>
+        <span th:text="${weight.dateWeight}">Data</span>
+        <span th:text="${weight.bodyw}">Waga</span>
+        <span th:text="${weight.description}">Opis</span>
+    </div>
+    <table>
+        <thead>
+        <tr class="head">
+            <th>Id</th>
+            <th>Data</th>
+            <th>Waga</th>
+            <th>Opis</th>
+            <th>Uwagi</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${weight.id}">Id></td>
+            <td th:text="${weight.dateWeight}">Data</td>
+            <td th:text="${weight.bodyw}">Waga</td>
+            <td th:text="${weight.description}">Opis</td>
+            <td>
+                <a th:href="@{'/weights/'+ ${weight.id}}" data-method="delete">Usuń</a>
+                <button data-method="delete" th:href="@{'/weights/'+ ${weight.id}}">usuwanie</button>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="weights">Lista wpisów</a>
+</main>
+</body>
+</html>

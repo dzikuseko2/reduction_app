@@ -18,6 +18,6 @@ public interface WeightRepository extends JpaRepository<Weight, Integer> {
 
     Weight save(Weight entity);
 
-
-
+    @Override
+    void deleteById(Integer integer);
 }

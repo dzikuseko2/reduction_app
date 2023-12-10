@@ -28,12 +28,11 @@ public class WeightController {
     @PostMapping
     String addWeight(@ModelAttribute("weight") Weight current, Model model){
         weightRepository.save(current);
-        model.addAttribute("weight", new Weight());
-        model.addAttribute("last", current.toString());
+        model.addAttribute("weight", current);
         model.addAttribute("message", "Dodano wpis");
         model.addAttribute("weights", getWeights());
-        System.out.println(current.toString());
-        return "weights";
+        System.out.println(current);
+        return "success";
 
     }
 
@@ -64,6 +63,22 @@ public class WeightController {
         });
         return ResponseEntity.noContent().build();
     }
+
+    @DeleteMapping("/{id}")
+    ResponseEntity<?>deleteWeight(@PathVariable int id){
+        if(!weightRepository.existsById(id)){
+            return ResponseEntity.notFound().build();
+        }
+        weightRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+    @DeleteMapping
+    String deletingWeight(int id){
+        weightRepository.deleteById(id);
+        return "weights";
+    }
+
+
     @ModelAttribute("weights")
     List<Weight> getWeights(){
         return weightRepository.findAll();

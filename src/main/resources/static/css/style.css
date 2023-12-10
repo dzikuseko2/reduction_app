@@ -1,0 +1,23 @@
+table, tr, td {
+    border-collapse: collapse;
+    border: solid 2px black;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin: 10px;
+}
+tbody > tr:nth-child(odd) {
+    color: white;
+    background-color: gray;
+}
+tbody > tr:nth-child(even) {
+    color: black;
+    background-color: white;
+}
+thead > tr, th {
+    border: solid 2px black;
+    border-collapse: collapse;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
